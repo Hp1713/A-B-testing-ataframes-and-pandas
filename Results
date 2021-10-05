@@ -1,0 +1,98 @@
+(base) hectors-MacBook-Pro:Reading_Files hectorprado$ python -u "/Users/hectorprado/Desktop/CodeCademy/Data_Analytics/Aggregates_in_Pandas/A:B Testing/AB_testing.py"
+
+Ad Clicks data frame only displaying first 10 rows:
+                                user_id utm_source            day ad_click_timestamp experimental_group
+0  008b7c6c-7272-471e-b90e-930d548bd8d7     google   6 - Saturday               7:18                  A
+1  009abb94-5e14-4b6c-bb1c-4f4df7aa7557   facebook     7 - Sunday                NaN                  B
+2  00f5d532-ed58-4570-b6d2-768df5f41aed    twitter    2 - Tuesday                NaN                  A
+3  011adc64-0f44-4fd9-a0bb-f1506d2ad439     google    2 - Tuesday                NaN                  B
+4  012137e6-7ae7-4649-af68-205b4702169c   facebook     7 - Sunday                NaN                  B
+5  013b0072-7b72-40e7-b698-98b4d0c9967f   facebook     1 - Monday                NaN                  A
+6  0153d85b-7660-4c39-92eb-1e1acd023280     google   4 - Thursday                NaN                  A
+7  01555297-d6e6-49ae-aeba-1b196fdbb09f     google  3 - Wednesday                NaN                  A
+8  018cea61-19ea-4119-895b-1a4309ccb148      email     1 - Monday              18:33                  A
+9  01a210c3-fde0-4e6f-8efd-4f0e38730ae6      email    2 - Tuesday              15:21                  B
+
+Number of views coming from each plataform: 
+  utm_source  count
+0      email    255
+1   facebook    504
+2     google    680
+3    twitter    215
+
+Column is_clicked added displays True if ad_click_timestamp is not null:
+                                user_id utm_source            day ad_click_timestamp experimental_group  is_click
+0  008b7c6c-7272-471e-b90e-930d548bd8d7     google   6 - Saturday               7:18                  A      True
+1  009abb94-5e14-4b6c-bb1c-4f4df7aa7557   facebook     7 - Sunday                NaN                  B     False
+2  00f5d532-ed58-4570-b6d2-768df5f41aed    twitter    2 - Tuesday                NaN                  A     False
+3  011adc64-0f44-4fd9-a0bb-f1506d2ad439     google    2 - Tuesday                NaN                  B     False
+4  012137e6-7ae7-4649-af68-205b4702169c   facebook     7 - Sunday                NaN                  B     False
+5  013b0072-7b72-40e7-b698-98b4d0c9967f   facebook     1 - Monday                NaN                  A     False
+6  0153d85b-7660-4c39-92eb-1e1acd023280     google   4 - Thursday                NaN                  A     False
+7  01555297-d6e6-49ae-aeba-1b196fdbb09f     google  3 - Wednesday                NaN                  A     False
+8  018cea61-19ea-4119-895b-1a4309ccb148      email     1 - Monday              18:33                  A      True
+9  01a210c3-fde0-4e6f-8efd-4f0e38730ae6      email    2 - Tuesday              15:21                  B      True
+
+Percent of people who click on ads from each source:
+  utm_source  is_click  user_id
+0      email     False      175
+1      email      True       80
+2   facebook     False      324
+3   facebook      True      180
+4     google     False      441
+5     google      True      239
+6    twitter     False      149
+7    twitter      True       66
+
+Pivot data frame for better display:
+is_click    False  True
+utm_source             
+email         175    80
+facebook      324   180
+google        441   239
+twitter       149    66
+
+Pivoted data frame with column percent_clicked added:
+is_click    False  True  percent_clicked
+utm_source                              
+email         175    80             4.84
+facebook      324   180            10.88
+google        441   239            14.45
+twitter       149    66             3.99
+
+Experimental group ad A and B count:
+  experimental_group  count
+0                  A    827
+1                  B    827
+
+data frame of every source that countains the number of people who clicked on each ad or not:
+is_click utm_source  False  True
+0             email    175    80
+1          facebook    324   180
+2            google    441   239
+3           twitter    149    66
+
+Displaying only the experimental groups and the result:
+is_click experimental_group  False  True
+0                         A    517   310
+1                         B    572   255
+
+Data Frame displays the result of ad A and percentage of clicks per day:
+is_click            day  False  True  percent_clicked
+0            1 - Monday     70    43            38.05
+1           2 - Tuesday     76    43            36.13
+2         3 - Wednesday     86    38            30.65
+3          4 - Thursday     69    47            40.52
+4            5 - Friday     77    51            39.84
+5          6 - Saturday     73    45            38.14
+6            7 - Sunday     66    43            39.45
+
+Data Frame displays the result of ad B and percentage of clicks per day:
+is_click            day  False  True  percent_clicked
+0            1 - Monday     81    32            28.32
+1           2 - Tuesday     74    45            37.82
+2         3 - Wednesday     89    35            28.23
+3          4 - Thursday     87    29            25.00
+4            5 - Friday     90    38            29.69
+5          6 - Saturday     76    42            35.59
+6            7 - Sunday     75    34            31.19
